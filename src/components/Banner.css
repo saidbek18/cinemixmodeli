@@ -1,0 +1,61 @@
+.banner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh; /* Balandlikni biroz oshirdik */
+  z-index: 1; /* Kontentdan pastda, lekin ko'rinadigan darajada */
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  /* Tepadan pastga qorayib borish, banner ko'rinishi uchun tepasini shaffof qildik */
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(0, 0, 0, 0.5) 60%, 
+    #000 100%
+  );
+  z-index: 2;
+}
+
+/* --- RESPONSIVE --- */
+
+/* Planshetlar uchun (iPad va h.k) */
+@media (max-width: 1024px) {
+  .banner-container {
+    height: 40vh;
+  }
+}
+
+/* Telefonlar uchun */
+@media (max-width: 768px) {
+  .banner-container {
+    height: 35vh; /* Mobilda rasm juda katta joy egallamasligi uchun */
+    position: absolute; /* Mobilda scroll qilinganda muammo bo'lmasligi uchun absolute yaxshiroq */
+  }
+  
+  .banner-overlay {
+    /* Mobilda gradientni yuqoriroqdan boshlaymiz, chunki ekran kichik */
+    background: linear-gradient(to bottom, 
+      transparent 10%, 
+      rgba(0, 0, 0, 0.5) 50%, 
+      #000 100%
+    );
+  }
+}
+
+/* Juda kichik ekranlar uchun */
+@media (max-width: 480px) {
+  .banner-container {
+    height: 30vh;
+  }
+}

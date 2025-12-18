@@ -1,0 +1,168 @@
+.slider-section {
+  width: 100%;
+  padding: 40px 5%;
+  background: #000;
+  overflow: hidden; /* Chetdan chiqib ketishni oldini oladi */
+}
+
+.slider-title {
+  color: #fff;
+  font-size: clamp(1.2rem, 4vw, 1.5rem); /* Ekran hajmiga qarab silliq kichrayadi */
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-left: 4px solid #22c55e;
+  padding-left: 12px;
+}
+
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.movie-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  /* Mobilda silliq to'xtash uchun */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Scrollbar-ni yashirish */
+.movie-track::-webkit-scrollbar {
+  display: none;
+}
+.movie-track {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.movie-item-box {
+  min-width: 220px;
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.movie-item-box:hover {
+  transform: translateY(-5px);
+}
+
+.poster-wrapper {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #222;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.poster-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s ease;
+}
+
+.poster-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.poster-wrapper:hover .poster-overlay {
+  opacity: 1;
+}
+
+.poster-wrapper:hover img {
+  transform: scale(1.1);
+}
+
+.movie-box-title {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #eee;
+  text-align: center;
+  font-weight: 500;
+  /* Ism sig'masa bir qatorda saqlaymiz */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Navigatsiya tugmalari */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.1);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  opacity: 0; /* Hover bo'lganda ko'rinadi */
+}
+
+.slider-container:hover .nav-btn {
+  opacity: 1;
+}
+
+.nav-btn:hover {
+  background: #22c55e;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+}
+
+.nav-btn.left { left: -22px; }
+.nav-btn.right { right: -22px; }
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+/* Planshetlar uchun */
+@media (max-width: 1024px) {
+  .movie-item-box { min-width: 190px; }
+  .poster-wrapper { height: 280px; }
+  .nav-btn { width: 40px; height: 40px; }
+}
+
+/* Katta telefonlar uchun */
+@media (max-width: 768px) {
+  .slider-section { padding: 25px 3%; }
+  .nav-btn { display: none; } /* Mobilda swipe qulayroq */
+  
+  .movie-track { gap: 15px; }
+  .movie-item-box { min-width: 150px; }
+  .poster-wrapper { height: 220px; border-radius: 10px; }
+  
+  .movie-box-title { font-size: 0.85rem; }
+  
+  /* Mobilda overlay doim biroz ko'rinib turishi uchun yoki yashirmaymiz */
+  .poster-overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+  }
+}
+
+/* Kichik telefonlar uchun */
+@media (max-width: 480px) {
+  .movie-item-box { min-width: 130px; }
+  .poster-wrapper { height: 190px; }
+  .slider-title { margin-bottom: 15px; }
+  .movie-track { gap: 12px; }
+}

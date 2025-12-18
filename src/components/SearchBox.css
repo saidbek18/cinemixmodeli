@@ -1,0 +1,161 @@
+.search-container {
+  width: 95%; /* Mobilda chetlarga yopishib qolmasligi uchun */
+  max-width: 700px;
+  margin: 20px auto; /* Markazlashtirish */
+  position: relative;
+  z-index: 100;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: #111;
+  padding: 5px 10px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  position: relative;
+  z-index: 102;
+  transition: border-color 0.3s;
+}
+
+.search-wrapper:focus-within {
+  border-color: #22c55e; /* Fokus bo'lganda yashil yonadi */
+}
+
+/* Qidiruv natijalari listi */
+.search-results-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #000;
+  border: 1px solid #333;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  max-height: 400px; /* List juda uzayib ketmasligi uchun */
+  overflow-y: auto;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.9);
+  z-index: 101;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #1a1a1a;
+  transition: 0.3s ease;
+}
+
+.result-row:hover {
+  background: #111;
+  padding-left: 25px;
+}
+
+.result-text p {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.result-text small {
+  color: #666;
+}
+
+/* Input va Label */
+.search-input-group {
+  position: relative;
+  flex-grow: 1;
+}
+
+.search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 15px 10px;
+  font-size: 1rem;
+}
+
+.floating-label {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: #555;
+  transition: 0.2s ease all;
+  pointer-events: none;
+}
+
+.search-input:focus ~ .floating-label,
+.search-input:not(:placeholder-shown) ~ .floating-label {
+  top: -2px; /* Mobilda sig'ishi uchun biroz tepaga surildi */
+  font-size: 0.75rem;
+  color: #22c55e;
+}
+
+/* 3D Tugma */
+.button-3d {
+  background: #22c55e; /* Sayt stiliga moslash uchun yashil qilindi */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 0 #166534;
+  transition: 0.1s;
+  white-space: nowrap; /* Matn sinib ketmasligi uchun */
+}
+
+.button-3d:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #166534;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 100%;
+    margin: 10px auto;
+  }
+
+  .search-input {
+    padding: 12px 8px;
+    font-size: 0.95rem;
+  }
+
+  .button-3d {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+
+  .button-3d span {
+    display: none; /* Mobilda faqat lupa belgisi ko'rinishi uchun (agar svg bo'lsa) */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-wrapper {
+    padding: 2px 8px;
+  }
+
+  .result-row {
+    padding: 10px 15px;
+  }
+
+  .result-text p {
+    font-size: 0.9rem;
+  }
+
+  /* Agar mobilda tugma xalaqit bersa, uni butunlay lupa ikonkasi qilish mumkin */
+  .button-3d {
+    min-width: 45px;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,21 @@
+/* Home.css */
+.home-page {
+  width: 100%;
+  overflow-x: hidden; /* Gorizontal skroll hosil bo'lmasligi uchun */
+  background-color: #000;
+}
+
+.home-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Komponentlar orasidagi masofa */
+  padding: 0 4%; /* Yon taraflardan ozgina joy tashlaymiz */
+}
+
+@media (max-width: 768px) {
+  .home-content {
+    padding: 0 2%; /* Mobilda yon joyni kamaytiramiz */
+    gap: 10px;
+  }
+}
