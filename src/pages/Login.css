@@ -1,0 +1,121 @@
+.login-page {
+  background: #080808;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Ortga tugmasi stili */
+.back-btn {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(-5px);
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header h2 {
+  color: white;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.login-header h2 span {
+  color: #e50914;
+}
+
+.login-header p {
+  color: #888;
+}
+
+.input-field {
+  margin-bottom: 20px;
+}
+
+.input-field label {
+  color: #bbb;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* Phone Input Custom Style */
+.phone-container-custom .phone-input-custom {
+  width: 100% !important;
+  height: 50px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  font-size: 16px !important;
+}
+
+.input-field input[type="password"] {
+  width: 100%;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0 15px;
+  color: white;
+  outline: none;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 50px;
+  background: #e50914;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-footer-text {
+  text-align: center;
+  margin-top: 25px;
+  color: #777;
+}
+
+.login-footer-text a {
+  color: #e50914;
+  text-decoration: none;
+  font-weight: 600;
+}

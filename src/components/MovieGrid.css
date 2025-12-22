@@ -159,16 +159,22 @@
 
 /* --- RESPONSIVE MEDIA QUERIES --- */
 
-@media (max-width: 1024px) {
-  .movie-box-item { min-width: 190px; }
-  .movie-poster-area { height: 280px; }
-  .nav-arrow { width: 40px; }
-}
-
 @media (max-width: 768px) {
   .movie-grid-container { padding: 20px 3%; }
-  .nav-arrow { display: none; } /* Mobilda barmoq bilan surish qulayroq */
-  
+
+  /* Mobilda tugmalarni ko'rsatish va sozlash */
+  .nav-arrow { 
+    display: flex; /* none edi, flex qildik */
+    opacity: 0.8;  /* Mobilda hover bo'lmagani uchun doimiy ko'rinadigan qildik */
+    width: 35px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5); /* Bir oz shaffofroq */
+  }
+
+  /* Tugmalar konteynerdan chiqib ketmasligi uchun joylashuvini to'g'irlaymiz */
+  .nav-arrow.left { left: 0; border-radius: 0 8px 8px 0; }
+  .nav-arrow.right { right: 0; border-radius: 8px 0 0 8px; }
+
   .movie-box-item { 
     min-width: 150px; 
     gap: 10px;
@@ -176,37 +182,21 @@
   
   .movie-poster-area { 
     height: 220px; 
-    border-radius: 10px;
   }
 
-  .movie-box-name {
-    font-size: 0.85rem;
-  }
-
-  .rating-badge {
-    top: 5px;
-    right: 5px;
-    font-size: 0.7rem;
-  }
-
-  /* Mobilda tugmalar doim chiqib turmasligi uchun opacity ni nol qilamiz, 
-     lekin bosganda ishlaydigan qilish uchun kichik o'zgarish */
+  /* Mobilda hover effekti o'rniga tugmalarni rasm ustida ko'rinadigan qilish */
   .movie-hover-content {
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    justify-content: flex-end;
-    padding-bottom: 10px;
+    opacity: 0; /* Faqat bosganda yoki hoverda chiqadi */
   }
   
-  /* Mobilda tugmalarni kichraytiramiz */
-  .green-play-btn, .glass-trailer-btn {
-    width: 120px;
-    padding: 6px;
-    font-size: 0.75rem;
-  }
+  /* Agar mobilda ham doim ko'rinishini xohlasangiz opacity: 1 qiling */
 }
 
 @media (max-width: 480px) {
+  .nav-arrow {
+    width: 30px;
+    height: 50px;
+  }
   .movie-box-item { min-width: 130px; }
-  .movie-poster-area { height: 190px; }
-  .grid-scroll-track { gap: 12px; }
+  .movie-poster-area { height: 180px; }
 }

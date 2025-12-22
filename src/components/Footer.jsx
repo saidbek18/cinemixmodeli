@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+// Github komponenti endi pastda ishlatiladi, shuning uchun xatolik yo'qoladi
 import { Github, Instagram, Send, Youtube, ChevronUp } from 'lucide-react';
 import './Footer.css';
 
@@ -8,7 +9,6 @@ const Footer = () => {
 
   return (
     <footer className="ultra-footer">
-      {/* Orqa fondagi harakatlanuvchi nur (Glow) */}
       <div className="footer-glow"></div>
 
       <div className="footer-main-container">
@@ -46,7 +46,7 @@ const Footer = () => {
             whileInView={{ scale: 1, opacity: 0.1 }}
             transition={{ duration: 1.5 }}
           >
-          UNLIMITED FILMS CINEMIX STUDIOS
+            UNLIMITED FILMS CINEMIX STUDIOS
           </motion.h2>
         </div>
 
@@ -55,10 +55,20 @@ const Footer = () => {
             © 2025 <span>CINEMIX STUDIO</span>. All Rights Reserved.
           </div>
           
+          {/* Ijtimoiy tarmoqlar havolalari */}
           <div className="social-circles">
-            <div className="icon-circle"><Send size={20} /></div>
-            <div className="icon-circle"><Instagram size={20} /></div>
-            <div className="icon-circle"><Youtube size={20} /></div>
+            <a href="https://t.me/apexionAPEX" target="_blank" rel="noreferrer" className="icon-circle">
+              <Send size={20} />
+            </a>
+            <a href="https://instagram.com/kamolovsaiko" target="_blank" rel="noreferrer" className="icon-circle">
+              <Instagram size={20} />
+            </a>
+            <a href="https://youtube.com/mrbeast" target="_blank" rel="noreferrer" className="icon-circle">
+              <Youtube size={20} />
+            </a>
+            <a href="https://github.com/saidbek18" target="_blank" rel="noreferrer" className="icon-circle">
+              <Github size={20} />
+            </a>
           </div>
 
           <motion.button 

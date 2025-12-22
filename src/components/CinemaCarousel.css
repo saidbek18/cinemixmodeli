@@ -5,26 +5,43 @@
   align-items: center;
   padding: 50px 0;
   overflow: hidden;
+  background: #000;
 }
 
 .carousel-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
   position: relative;
 }
 
 .main-banner {
-  flex: 2;
-  height: 450px;
+  flex: 0 0 75%;
+  height: 480px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
   z-index: 5;
   transition: all 0.5s ease;
+}
+
+/* Vignette effekti - rasm ustidan qora qatlam */
+.main-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, 
+    #000 0%, 
+    transparent 15%, 
+    transparent 85%, 
+    #000 100%
+  ),
+  linear-gradient(to bottom, transparent 50%, #000 100%);
+  z-index: 6;
+  pointer-events: none;
 }
 
 .main-banner img {
@@ -34,15 +51,13 @@
 }
 
 .side-banner {
-  flex: 0.5;
-  height: 300px;
+  flex: 0 0 12.5%;
+  height: 350px;
   border-radius: 15px;
   overflow: hidden;
-  filter: blur(4px) brightness(0.4); /* Blur biroz kamaytirildi mobilda ko'rinishi uchun */
-  opacity: 0.6;
-  transition: 0.8s ease;
+  filter: blur(8px) brightness(0.3);
+  opacity: 0.5;
   z-index: 1;
-  cursor: pointer;
 }
 
 .side-banner img {
@@ -51,14 +66,25 @@
   object-fit: cover;
 }
 
-/* Tugmalar qismi */
-.banner-controls {
+/* Banner ichidagi tugmalar va sarlavha */
+.banner-overlay-content {
   position: absolute;
-  bottom: 30px;
-  left: 30px;
+  bottom: 40px;
+  left: 40px;
+  z-index: 10;
+  width: 100%;
+}
+
+.movie-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+.banner-controls {
   display: flex;
   gap: 15px;
-  z-index: 10;
 }
 
 .btn-watch {
@@ -72,13 +98,6 @@
   gap: 10px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
-  transition: 0.3s;
-}
-
-.btn-watch:hover {
-  transform: scale(1.05);
-  background: #16a34a;
 }
 
 .btn-trailer {
@@ -91,85 +110,149 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 500;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-/* --- GLOBAL RESPONSIVE --- */
+/* --- RESPONSIVE --- */
 
-/* Planshetlar uchun */
-@media (max-width: 1024px) {
-  .main-banner {
-    height: 350px;
-  }
-  .side-banner {
-    height: 250px;
-    flex: 0.4;
-  }
-}
-
-/* Telefonlar uchun (Hech narsa yo'qolmaydi) */
 @media (max-width: 768px) {
-  .carousel-section {
-    padding: 20px 0;
-  }
+  .carousel-section { padding: 0; }
+  
+  /* SIZ AYTGAN: Yon bannerlar yo'qolishi */
+  .side-banner { display: none !important; }
 
-  .carousel-container {
-    flex-direction: column; /* Elementlarni ustma-ust qo'yamiz */
-    gap: 10px;
-  }
+  .carousel-container { gap: 0; }
 
+  /* SIZ AYTGAN: Main banner 100% bo'lishi */
   .main-banner {
-    width: 100%;
-    height: 250px;
-    order: 1; /* Asosiy rasm tepada */
+    flex: 0 0 100%;
+    height: 300px;
+    border-radius: 0;
   }
 
-  /* Yon bannerlar yo'qolmaydi, pastda kichik bo'lib turadi */
-  .side-banners-wrapper { 
-    display: flex; 
-    gap: 10px; 
-    width: 100%;
-    order: 2;
+  .main-banner::after {
+    background: linear-gradient(to right, 
+      #000 0%, 
+      transparent 10%, 
+      transparent 90%, 
+      #000 100%
+    ),
+    linear-gradient(to bottom, transparent 40%, #000 100%);
   }
 
-  .side-banner {
-    display: flex !important; /* Bloklangan bo'lsa ochamiz */
-    flex: 1;
-    height: 100px;
-    filter: brightness(0.6); /* Mobilda blur olinib, faqat qorong'ulashadi */
-    opacity: 1;
+  .movie-title { font-size: 1.5rem; }
+  
+  .banner-overlay-content {
+    bottom: 20px;
+    left: 15px;
   }
 
   .banner-controls {
-    bottom: 15px;
-    left: 15px;
-    gap: 8px;
+    justify-content: flex-start;
   }
 
   .btn-watch, .btn-trailer {
     padding: 8px 15px;
     font-size: 0.8rem;
-    gap: 5px;
-  }
-  
-  .btn-watch svg, .btn-trailer svg {
-    width: 16px;
-    height: 16px;
   }
 }
 
-/* Juda kichik telefonlar uchun */
 @media (max-width: 480px) {
-  .main-banner {
-    height: 200px;
+  .main-banner { height: 250px; }
+}
+/* ... (oldingi carousel-section va main-banner kodlari o'zgarishsiz qoladi) ... */
+
+/* Tugmalar joylashgan konteyner */
+.banner-controls {
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+  position: relative; /* Gradient ustida ko'rinishi uchun */
+}
+
+/* 1. KO'RISH TUGMASI (Yashil Neon) */
+.btn-watch {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  
+  /* Boshlang'ich soya */
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-watch:hover {
+  background: #16a34a;
+  transform: translateY(-3px) scale(1.05);
+  /* Hoverda neon nuri kuchayishi */
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.7), 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-watch:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 2. TREYLER TUGMASI (Shisha effekti va Neon chegara) */
+.btn-trailer {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  padding: 12px 28px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-trailer:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #22c55e; /* Hoverda cheti yashil bo'ladi */
+  color: #22c55e;
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+}
+
+/* 3. SARLAVHA ANIMATSIYASI */
+.movie-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  color: #ffffff;
+  /* Matnga neon soya */
+  text-shadow: 0 0 20px rgba(34, 197, 94, 0.3), 2px 2px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: -1px;
+}
+
+/* --- RESPONSIVE TOG'IRLASH --- */
+@media (max-width: 768px) {
+  .movie-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-align: center;
   }
-  .side-banner {
-    height: 80px;
-  }
+
   .banner-controls {
-    width: calc(100% - 30px);
-    justify-content: space-between;
+    justify-content: center;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .btn-watch, .btn-trailer {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    flex: 1; /* Tugmalar teng kenglikda bo'ladi */
+    justify-content: center;
   }
 }
