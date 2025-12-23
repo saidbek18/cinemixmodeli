@@ -33,9 +33,9 @@ const Signup = () => {
 
     try {
       // Backendga so'rov yuborish
-      const response = await axios.post('https://cinemixmodeli-1.onrender.com', {
-        phone: phone,
-        password: password
+const response = await axios.post('https://cinemixmodeli-1.onrender.com/api/auth/signup', {
+  phone: phone,
+  password: password
       });
 
       if (response.status === 201) {
