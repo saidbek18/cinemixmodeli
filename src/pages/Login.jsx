@@ -18,9 +18,9 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await axios.post('https://cinemixmodeli-1.onrender.com', {
-        phone: phone, // PhoneInputdan kelgan qiymat (+998...)
-        password: password
+const response = await axios.post('https://cinemixmodeli-1.onrender.com/api/auth/login', {
+  phone: phone, 
+  password: password
       });
 
       if (response.data.token) {
