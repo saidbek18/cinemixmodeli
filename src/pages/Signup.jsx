@@ -33,7 +33,7 @@ const Signup = () => {
 
     try {
       // Backendga so'rov yuborish
-      const response = await axios.post('http://localhost:5000/api/auth/signup', {
+      const response = await axios.post('https://cinemixmodeli-1.onrender.com', {
         phone: phone,
         password: password
       });

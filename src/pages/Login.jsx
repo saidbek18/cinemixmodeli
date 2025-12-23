@@ -18,7 +18,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await axios.post('https://cinemixmodeli-1.onrender.com', {
         phone: phone, // PhoneInputdan kelgan qiymat (+998...)
         password: password
       });
